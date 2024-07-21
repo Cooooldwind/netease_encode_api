@@ -9,7 +9,7 @@ setup(
         # 开发的目标用户
         "Intended Audience :: Customer Service",
         "Intended Audience :: Developers",
-        "Intended Audience :: End Users/Desktop",
+        # "Intended Audience :: End Users/Desktop",
         # 属于什么类型
         "Topic :: Communications :: File Sharing",
         "Topic :: Internet",
@@ -24,7 +24,7 @@ setup(
         "Programming Language :: Python :: 3.12",
     ],
     name="netease_encode_api",
-    version="0.1.0",
+    version="0.2.0",
     description="网易云weapi解码和封装。",
     author="CooooldWind_",
     url="https://gitee.com/CooooldWind/netease_encode_api",
