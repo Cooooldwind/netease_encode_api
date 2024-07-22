@@ -1,6 +1,6 @@
 """
 netease_encode_api/__init__.py
-Version: 0.2.0
+Version: 1.0.0
 Author: CooooldWind_
 E-Mail: 3091868003@qq.com
 Copyright @CooooldWind_ / Following GNU_AGPLV3+ License
@@ -49,8 +49,10 @@ class EncodeSession:
             self.__encode_params(encode_data, self.__encode_arg_g), self.__encode_arg_i
         )
 
-    def get_response(self, encode_data: dict, url: str):
-        """获取资源"""
+    def get_response(self, url: str, encode_data: dict):
+        """
+        获取资源。
+        需要给出 `url` 和 `encode_data` 作为参数。"""
         processed_data = {
             "params": self.__get_params(json.dumps(encode_data)),
             "encSecKey": self.__encode_sec_key,
