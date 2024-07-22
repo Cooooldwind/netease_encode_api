@@ -1,6 +1,6 @@
 """
 netease_encode_api/__init__.py
-Version: 0.2.0
+Version: 1.0.1
 Author: CooooldWind_
 E-Mail: 3091868003@qq.com
 Copyright @CooooldWind_ / Following GNU_AGPLV3+ License
