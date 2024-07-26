@@ -1,6 +1,6 @@
 """
 netease_encode_api/__init__.py
-Version: 1.0.1
+Version: 1.1.0
 Author: CooooldWind_
 E-Mail: 3091868003@qq.com
 Copyright @CooooldWind_ / Following GNU_AGPLV3+ License
@@ -64,3 +64,9 @@ class EncodeSession:
             timeout=10,
         ).json()
         return dict(response)
+    
+    def set_cookies(self, cookies: dict):
+        """
+        设置Cookies。
+        """
+        self.session.cookies.update(cookies)
