@@ -26,6 +26,7 @@ class EncodeSession:
         self.__encode_sec_key = self.__global.ENCODE_SEC_KEY
         self.__headers = random.choice(self.__global.HEADERS)
         self.session = requests.session()
+        self.last_response: dict = None
 
     def __to_hex(self, encode_data):
         """16进制解码"""
@@ -63,7 +64,9 @@ class EncodeSession:
             headers={"User-Agent": self.__headers},
             timeout=10,
         ).json()
-        return dict(response)
+        response = dict(response)
+        self.last_response = response
+        return response
     
     def set_cookies(self, cookies: dict):
         """
