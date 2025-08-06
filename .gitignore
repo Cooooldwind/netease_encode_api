@@ -136,3 +136,8 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# PyCharm
+#  JetBrains IDEs support multiple projects per directory (i.e., `workspace`)
+#  but still store project files in a directory called `.idea`.
+.idea/

@@ -23,14 +23,15 @@ setup(
         "Programming Language :: Python :: 3.12",
     ],
     name="netease_encode_api",
-    version="1.1.2",
+    version="1.2.0",
     description="网易云weapi解码和封装。",
     author="CooooldWind_",
-    url="https://gitee.com/CooooldWind/netease_encode_api",
+    url="https://github.com/CooooldWind/netease_encode_api",
     packages=find_packages(),
     install_requires=[
         "pycryptodome",
         "requests",
+        "pyqrcode",
     ],
     entry_points={
         # "console_scripts": [""]

@@ -7,10 +7,15 @@ Copyright @CooooldWind_ / Following GNU_AGPLV3+ License
 """
 
 import json
+import time
+from urllib import response
+
 import requests
 from base64 import b64encode
 from Crypto.Cipher import AES
 from netease_encode_api.global_args import GlobalArgs
+
+import pyqrcode
 
 
 class EncodeSession(requests.Session):
@@ -60,22 +65,31 @@ class EncodeSession(requests.Session):
             self.__encode_params(encode_data, self.__encode_arg_g), self.__encode_arg_i
         )
 
-    def encoded_post(self, url: str, encode_data: dict) -> dict:
+    def encoded_post(self, url: str, data: dict) -> requests.Response:
         """
         发送加密的POST请求并获取响应。
-        需要给出 `url` 和 `encode_data` 作为参数。
+        需要给出 `url` 和 `data` 作为参数。
         """
         processed_data = {
-            "params": self.__get_params(json.dumps(encode_data)).encode("UTF-8"),
+            "params": self.__get_params(json.dumps(data)).encode("UTF-8"),
             "encSecKey": self.__encode_sec_key,
         }
         # 使用继承自父类的 post 方法
-        response = self.post(
-            url=url,
-            data=processed_data,
-            headers=self.__headers,
-            timeout=10
-        ).json()
-        response = dict(response)
-        self.last_response = response
-        return response
+        return self.post(url=url, data=processed_data)
+
+    def cmd_login(self):
+        # 没开发完。现在问题是，弹“803”登录成功前，会弹“8821”行为验证的状态码。找不出原因。
+        unikey = self.encoded_post("https://music.163.com/weapi/login/qrcode/unikey", {"type": "1"}).json()["unikey"]
+        login_qrcode_link = f"https://music.163.com/login?codekey={unikey}&refer=scan"
+        print(pyqrcode.create(login_qrcode_link, error="L").terminal(quiet_zone=1))
+        status_code = 801
+        while 803 > status_code > 800:
+            time.sleep(0.5)
+            status_code = int(self.encoded_post("https://music.163.com/weapi/login/qrcode/client/login",
+                                                {"key": unikey, "type": "1"}).json()["code"])
+        if status_code == 803:
+            print("Succeed.")
+        else:
+            print("Failed.")
+        return None
+
