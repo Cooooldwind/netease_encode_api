@@ -1,6 +1,6 @@
 [project]
 name = "netease-encode-api"
-version = "1.2.1"
+version = "1.2.2"
 description = "网易云weapi解码和封装。"
 readme = "README.md"
 requires-python = ">=3.9"
@@ -12,7 +12,8 @@ dependencies = [
 license = { text = "AGPL-3.0-or-later" }
 authors = [{name="CooooldWind_",email="3091868003@qq.com"}]
 [tool.setuptools.packages.find]
-where = ["netease_encode_api"]
+where = ["."]
+include = ["netease_encode_api*"]
 [[tool.uv.index]]
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
